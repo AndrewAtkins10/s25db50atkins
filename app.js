@@ -1,3 +1,18 @@
+require('dotenv').config();
+const mongoose = require('mongoose');
+const connectionString = process.env.MONGO_CON;
+
+mongoose.connect(connectionString);
+
+// Get the default connection
+var db = mongoose.connection;
+
+// Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+  console.log("Connection to DB succeeded");
+});
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
