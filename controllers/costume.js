@@ -16,20 +16,19 @@ exports.costume_detail = function(req, res) {
 };
 
 exports.costume_create_post = async function(req, res) {
-    console.log(req.body);
+    console.log("Body received:", req.body); 
     let document = new Costume();
-    
     document.costume_type = req.body.costume_type;
     document.cost = req.body.cost;
     document.size = req.body.size;
     try {
         let result = await document.save();
         res.send(result);
-    }
-    catch(err) {
+    } catch(err) {
+        console.log("DB Error:", err); 
         res.status(500);
         res.send(`{"error": ${err}}`);
-    }  
+    }
 };
 
 exports.costume_delete = async function(req, res) {
