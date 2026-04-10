@@ -1,8 +1,10 @@
 var express = require('express');
-const costume_controlers = require('../controllers/costume');
+const costume_controllers = require('../controllers/costume');
 var router = express.Router();
 
 /* GET costumes page. */
-router.get('/', costume_controlers.costume_view_all_Page);
+router.get('/', costume_controllers.costume_view_all_Page);
+
+router.get('/costumes/:id', costume_controllers.costume_detail);
 
 module.exports = router;
