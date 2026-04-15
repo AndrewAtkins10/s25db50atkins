@@ -4,9 +4,13 @@ block content
   h1= title
   - let items = results
   div(class="container-fluid")
-    div(class="row")
+    div(class="row m-1")
       each item in items
-        div(class="col-sm-2")
-          h3 #{item.costume_type}
-          p Size: #{item.size}
-          p Cost: $#{item.cost}
+        - let destination = `dispatch(\"/costumes/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.costume_type}(#{item.size}) is #{item.cost}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
