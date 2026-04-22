@@ -1,18 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}. Atkins Server 26wb50atkins.
-  
-  button(type="button", class="btn btn-secondary", onclick="reduce()") Sample Button
-  
-  div#use(class="mt-2") take some away
-
-  script.
-    let current = 11;
-    let quantity = 2;
-    function reduce() {
-      current -= quantity;
-      if (current < 0) current = 0;
-      document.getElementById('use').innerText = `Reduced by ${quantity} to ${current}`;
-    } 
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/costumes") Take me to costumes
+    br
+    a(href="/logout") Logout
